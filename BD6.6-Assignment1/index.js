@@ -1,21 +1,40 @@
 const cors = require("cors");
 const express = require("express");
-const { getAllBooks, getBookById } = require("./controllers");
+const { getAllShows, getShowById, addShow } = require("./controllers");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Endpoint to get all books
-app.get("/books", async (req, res) => {
-  const books = getAllBooks();
-  res.json({ books });
+// Get all shows
+app.get("/shows", async (req, res) => {
+  const shows = getAllShows();
+  res.status(200).json({ shows });
 });
 
-// Endpoint to get a book by ID
-app.get("/books/details/:id", async (req, res) => {
-  const book = getBookById(parseInt(req.params.id));
-  res.json({ book });
+// Get show by ID
+app.get("/shows/:id", async (req, res) => {
+  const showId = parseInt(req.params.id);
+  const show = getShowById(showId);
+
+  if (show) {
+    res.status(200).json({ show });
+  } else {
+    res.status(404).json({ error: "Show not found" });
+  }
 });
 
-module.exports = { app, getAllBooks, getBookById };
+// Add a new show
+app.post("/shows", async (req, res) => {
+  const { title, theatreId, time } = req.body;
+
+  if (!title || !theatreId || !time) {
+    res.status(400).json({ error: "Invalid input. All fields are required." });
+    return;
+  }
+
+  const newShow = addShow({ title, theatreId, time });
+  res.status(201).json(newShow);
+});
+
+module.exports = { app };
