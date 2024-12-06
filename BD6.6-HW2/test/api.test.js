@@ -3,7 +3,6 @@ const http = require("http");
 const { getAllGames, getGameById } = require("../controllers");
 const { app } = require("../index");
 
-// Mock the controller functions
 jest.mock("../controllers", () => ({
   ...jest.requireActual("../controllers"),
   getAllGames: jest.fn(),
@@ -23,7 +22,7 @@ afterAll(async () => {
 
 describe("Controller Function tests", () => {
   beforeEach(() => {
-    jest.clearAllMocks(); // Clear mocks before each test
+    jest.clearAllMocks();
   });
 
   it("should return all games", () => {
@@ -170,7 +169,6 @@ describe("Mock Function tests", () => {
     // Perform the GET request to /games
     await request(server).get("/games");
 
-    // Verify that the mock function was called exactly once
     expect(getAllGames).toHaveBeenCalledTimes(1);
     expect(getAllGames).toHaveBeenCalledWith();
   });
