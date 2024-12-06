@@ -19,19 +19,3 @@ ignorePorts = false
 [[ports]]
 localPort = 3001
 externalPort = 3002
-
-[[ports]]
-localPort = 38715
-externalPort = 80
-
-[[ports]]
-localPort = 45501
-externalPort = 3003
-
-[[ports]]
-localPort = 45753
-externalPort = 3001
-
-[[ports]]
-localPort = 46763
-externalPort = 3000
