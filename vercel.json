@@ -1,5 +1,5 @@
 {
   "version": 2,
-  "builds": [{ "src": "BD6.6-HW1/server.js", "use": "@vercel/node" }],
-  "rewrites": [{ "source": "/(.*)", "destination": "BD6.6-HW1/server.js" }]
+  "builds": [{ "src": "BD6.6-HW2/server.js", "use": "@vercel/node" }],
+  "rewrites": [{ "source": "/(.*)", "destination": "BD6.6-HW2/server.js" }]
 }
